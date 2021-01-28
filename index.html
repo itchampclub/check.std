@@ -40,11 +40,12 @@ liff.getProfile()
 .then(profile => {
   const uname = profile.displayName
   const uid = profile.userId;
+  alert(uid);
 })
 .catch((err) => {
   console.log('error', err);
 });
-      alert(uid);
+      
       window.location.href = 'https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456&uid='+uid+'&uname'+uname;
 }
 
