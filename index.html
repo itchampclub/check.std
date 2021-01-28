@@ -13,10 +13,6 @@
   <body>
     <center>
     <h1>Check-In/Out Log</h1>
-<p>Click the button to check-in.</p>
-<div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="checks()">Check-In</button></div>
-
-<p id="demo"></p>
 </center>
 
 <script>
@@ -42,9 +38,9 @@ function checks() {
      liff.getProfile().then(function(profile) {
             var uid = profile.userId;
             var uname = profile.displayName;
-window.location.href = 'https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456&uid='+uid+'&uname'+uname;
       };  
-      
+      alert(uid);
+      window.location.href = 'https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456&uid='+uid+'&uname'+uname;
 }
 
 
