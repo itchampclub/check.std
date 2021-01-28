@@ -12,7 +12,7 @@
   </head>
   <body>
     <center>
-    <h1>Check-In/Out Log 2021</h1>
+    <h1>Check-In/Out Log</h1>
 </center>
 
 <script>
@@ -35,10 +35,15 @@ function initializeLiff(myLiffId) {
 }
 
 function checks() {
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-      });  
+
+liff.getProfile()
+.then(profile => {
+  const uname = profile.displayName
+  const uid = profile.userId;
+})
+.catch((err) => {
+  console.log('error', err);
+});
       alert(uid);
       window.location.href = 'https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456&uid='+uid+'&uname'+uname;
 }
