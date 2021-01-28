@@ -13,6 +13,11 @@
   <body>
     <center>
     <h1>Check-In/Out Log</h1>
+<p>Click the button to check-in or check-out with your coordinates.</p>
+<div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
+<div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
+
+<p id="demo"></p>
 </center>
 
 <script>
@@ -20,6 +25,24 @@ window.onload = function() {
   initializeLiff('1655619080-ZPgKAQ6W');
 }
 
+const xurl = "https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456";
+
+function checks(){
+
+var today = new Date();
+today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
+var hh = today.getHours();
+var mm = today.getMinutes(); 
+
+        if(hh <= 13){
+          document.getElementById("cin").classList.remove('invisible');
+        }else if(hh >= 17){
+          document.getElementById("cout").classList.remove('invisible');
+            }else{
+alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 13.00-17.00 "+hh+":"+mm);
+liff.closeWindow();  
+            }
+}
 
 
 function initializeLiff(myLiffId) {
@@ -34,24 +57,56 @@ function initializeLiff(myLiffId) {
         });
 }
 
-function checks() {
+var x = document.getElementById("demo");
 
-liff.getProfile()
-.then(profile => {
-  const uname = profile.displayName
-  const uid = profile.userId;
-  alert(uid);
-})
-.catch((err) => {
-  console.log('error', err);
-});
-      
-      window.location.href = 'https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456&uid='+uid+'&uname'+uname;
+function getLocation() {
+
+     liff.getProfile().then(function(profile) {
+            var uid = profile.userId;
+            var uname = profile.displayName;
+        var xos = liff.getOS();
+  x.innerHTML = "<br>userId: " + uid+ 
+  "<br>displayName: " + uname+
+  "<br>your OS: " + xos;
+var xmlhttp = new XMLHttpRequest();
+        var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname;
+        xmlhttp.open('GET', theUrl);
+        xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonResponse = JSON.parse(this.responseText);
+        }
+        alert(jsonResponse.desc);
+        liff.closeWindow();
+      }});  
 }
 
 
 
+///////////////////////////////
 
+
+function getLocationOut() {
+
+     liff.getProfile().then(function(profile) {
+            var uid = profile.userId;
+            var uname = profile.displayName;
+        var xos = liff.getOS();
+  x.innerHTML = "<br>userId: " + uid+ 
+  "<br>displayName: " + uname+
+  "<br>your OS: " + xos;
+var xmlhttp = new XMLHttpRequest();
+        var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname;
+        xmlhttp.open('GET', theUrl);
+        xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonResponse = JSON.parse(this.responseText);
+        }
+        alert(jsonResponse.desc);
+        liff.closeWindow();
+      }});  
+}
 
 
 
