@@ -14,36 +14,15 @@
     <center>
     <h1>Check-In/Out Log</h1>
 <p>Click the button to check-in or check-out with your coordinates.</p>
-<div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
-<div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
-
-<p id="demo"></p>
+<div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="letg()">Check-In</button></div>
+รหัสนักเรียน : <input type="text" id="stdid" value="">
+<p id="tex1"></p>
 </center>
 
 <script>
 window.onload = function() {
-  initializeLiff('1655620238-VoAkNK7P');
+  initializeLiff('1655620417-5dWDpmLl');
 }
-
-const xurl = "https://script.google.com/macros/s/AKfycbz-krIX4x26C_hIFECOy5i0EvLPIMIeKiSPD4kswFJXznuGFE4/exec";
-
-function checks(){
-
-var today = new Date();
-today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
-var hh = today.getHours();
-var mm = today.getMinutes(); 
-
-        if(hh <= 13){
-          document.getElementById("cin").classList.remove('invisible');
-        }else if(hh >= 17){
-          document.getElementById("cout").classList.remove('invisible');
-            }else{
-alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 13.00-17.00 "+hh+":"+mm);
-liff.closeWindow();  
-            }
-}
-
 
 function initializeLiff(myLiffId) {
     liff
@@ -51,81 +30,23 @@ function initializeLiff(myLiffId) {
             liffId: myLiffId
         })
         .then(() => {
-            checks();
+         //   checks();
         })
         .catch((err) => {
         });
 }
 
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-
+function letg() {
+var x = document.getElementById("tex1");
+var x2 = document.getElementById("stdid").value;
      liff.getProfile().then(function(profile) {
             var uid = profile.userId;
             var uname = profile.displayName;
         var xos = liff.getOS();
-  x.innerHTML = "Lat: " + position.coords.latitude + 
-  "<br>Long: " + position.coords.longitude+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname+
-  "<br>your OS: " + xos;
-var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-        xmlhttp.open('GET', theUrl);
-        xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
-        }
-        alert(jsonResponse.desc);
-        liff.closeWindow();
-      }});  
-}
-
-
-
-///////////////////////////////
-
-
-function getLocationOut() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPositionOut);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPositionOut(position) {
-
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-        var xos = liff.getOS();
-  x.innerHTML = "Lat: " + position.coords.latitude + 
-  "<br>Long: " + position.coords.longitude+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname+
-  "<br>your OS: " + xos;
-var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-        xmlhttp.open('GET', theUrl);
-        xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
-        }
-        alert(jsonResponse.desc);
-        liff.closeWindow();
-      }});  
+  x.innerHTML = "<br>userId: " + uid+ 
+  "<br>displayName: " + uname;
+window.location.replace('https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec?callback&scope=notify&state=abcdef123456&'+'stdid='+x2);
+      });  
 }
 
 
