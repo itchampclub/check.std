@@ -22,10 +22,10 @@
 
 <script>
 window.onload = function() {
-  initializeLiff('1655619080-ZPgKAQ6W');
+  initializeLiff('1654370606-geWqlVLk');
 }
 
-const xurl = "https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://script.google.com/macros/s/AKfycbwzhQdgAjA40o9vub9xNQwLp_kn5SYmLtXSstAVYUReZlaZkNtG1Svq/exec?callback&scope=notify&state=abcdef123456";
+const xurl = "https://script.google.com/macros/s/AKfycbz-krIX4x26C_hIFECOy5i0EvLPIMIeKiSPD4kswFJXznuGFE4/exec";
 
 function checks(){
 
@@ -60,16 +60,26 @@ function initializeLiff(myLiffId) {
 var x = document.getElementById("demo");
 
 function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
 
      liff.getProfile().then(function(profile) {
             var uid = profile.userId;
             var uname = profile.displayName;
         var xos = liff.getOS();
-  x.innerHTML = "<br>userId: " + uid+ 
+  x.innerHTML = "Lat: " + position.coords.latitude + 
+  "<br>Long: " + position.coords.longitude+ 
+  "<br>userId: " + uid+ 
   "<br>displayName: " + uname+
   "<br>your OS: " + xos;
 var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname;
+        var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
         xmlhttp.open('GET', theUrl);
         xmlhttp.send();
             xmlhttp.onreadystatechange = function() {
@@ -87,16 +97,26 @@ var xmlhttp = new XMLHttpRequest();
 
 
 function getLocationOut() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPositionOut);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPositionOut(position) {
 
      liff.getProfile().then(function(profile) {
             var uid = profile.userId;
             var uname = profile.displayName;
         var xos = liff.getOS();
-  x.innerHTML = "<br>userId: " + uid+ 
+  x.innerHTML = "Lat: " + position.coords.latitude + 
+  "<br>Long: " + position.coords.longitude+ 
+  "<br>userId: " + uid+ 
   "<br>displayName: " + uname+
   "<br>your OS: " + xos;
 var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname;
+        var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
         xmlhttp.open('GET', theUrl);
         xmlhttp.send();
             xmlhttp.onreadystatechange = function() {
