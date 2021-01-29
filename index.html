@@ -14,8 +14,10 @@
     <center>
     <h1>Check-In/Out Log</h1>
 <p>Click the button to check-in or check-out with your coordinates.</p>
-<div id="cin" class="visible"><button type="button" class="btn btn-success" onclick="letg()">Check-In</button></div>
+      </div>
 รหัสนักเรียน : <input type="text" id="stdid" value="">
+    </br>
+<div id="cin" class="visible"><button type="button" class="btn btn-success" onclick="letg()">Check-In</button>
 <p id="tex1"></p>
 </center>
 
@@ -45,7 +47,7 @@ var x2 = document.getElementById("stdid").value;
         var xos = liff.getOS();
   x.innerHTML = "<br>userId: " + uid+ 
   "<br>displayName: " + uname;
-window.location.replace('https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec?callback&scope=notify&state=abcdef123456&'+'stdid='+x2);
+window.location.replace('https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec?callback&scope=notify&state=abcdef123456&stdid='+x2);
       });  
 }
 
