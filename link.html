@@ -46,16 +46,9 @@ function letg() {
         var params = 'grant_type=authorization_code&code='+exc+'&client_id=vF9AoTvZ7nBfkMV8EoW6t8&client_secret=ExgbZDYXxxoDWBAcF2GBv3K6sly55Gmm0yV76EQi8PR&redirect_uri=https://itchampclub.github.io/check.std/link.html';
         http.open('POST', url, true);
         http.send(params);
-            http.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
-        }
-        
-        var jsonResponse = JSON.parse(this.responseText);
+        alert(params);
+        var jsonResponse = JSON.parse(http.responseText);
         alert(jsonResponse.status);
-        }
-
-
 }
 
 
