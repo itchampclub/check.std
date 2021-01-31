@@ -58,6 +58,28 @@ http.onreadystatechange = function() {//Call a function when the state changes.
 }
 http.send(params);*/
 
+
+var xhr = new XMLHttpRequest();
+var url = 'https://notify-bot.line.me/oauth/token';
+xhr.open("POST", url, true);
+
+//Send the proper header information along with the request
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+xhr.onreadystatechange = function() { // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      var jsonResponse = JSON.parse(this.responseText);
+        // Request finished. Do processing here.
+    }
+    alert(jsonResponse.access_token);
+}
+xhr.send('grant_type=authorization_code&code='+myParam+'&redirect_uri=https://itchampclub.github.io/check.std/&client_id=vF9AoTvZ7nBfkMV8EoW6t8&client_secret=ExgbZDYXxxoDWBAcF2GBv3K6sly55Gmm0yV76EQi8PR');
+
+
+
+
+/*
+
         alert(exc);
         var http = new XMLHttpRequest();
         var url = 'https://notify-bot.line.me/oauth/token';
@@ -69,7 +91,7 @@ http.send(params);*/
             var jsonResponse = JSON.parse(this.responseText);
         }
         alert(jsonResponse.status);
-        }
+        }*/
 
 
 }
