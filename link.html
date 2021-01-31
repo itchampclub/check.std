@@ -38,7 +38,7 @@ function initializeLiff(myLiffId) {
         });
 }
   var x = document.getElementById("tex1");
-var myParam = location.search.split('code=')[1];
+var myParam = location.search.('code=')[1].split('&')[0];
   x.innerHTML = myParam; 
 function letg() {
 
@@ -47,10 +47,20 @@ var x2 = document.getElementById("stdid").value;
             var uid = profile.userId;
             var uname = profile.displayName;
         var xos = liff.getOS();
-  x.innerHTML = "<br>userId: " + x2+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname;
-window.location.replace('https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec?callback&scope=notify&state='+x2+'&stdid='+x2);
+
+
+var http = new XMLHttpRequest();
+var url = 'https://notify-bot.line.me/oauth/token';
+var params = 'grant_type=authorization_code&code='+myParam+'&redirect_uri=https://itchampclub.github.io/check.std/&client_id=vF9AoTvZ7nBfkMV8EoW6t8&client_secret=ExgbZDYXxxoDWBAcF2GBv3K6sly55Gmm0yV76EQi8PR';
+http.open('POST', url, true);
+http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+    }
+}
+http.send(params);
       });  
 }
 
