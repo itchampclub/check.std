@@ -25,30 +25,20 @@
 window.onload = function() {
   initializeLiff('1655620417-5dWDpmLl');
 }
-
+var myParam = location.search.('code=')[1].split('&')[0];
 function initializeLiff(myLiffId) {
     liff
         .init({
             liffId: myLiffId
         })
         .then(() => {
-         //   checks();
+         alert(myParam);
         })
         .catch((err) => {
         });
 }
-var myParam = location.search.('code=')[1];
-alert(myParam);
-
 
 function letg() {
-
-/*var x2 = document.getElementById("stdid").value;
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-        var xos = liff.getOS();*/
-
 
 var http = new XMLHttpRequest();
 var url = 'https://notify-bot.line.me/oauth/token';
@@ -62,7 +52,7 @@ http.onreadystatechange = function() {//Call a function when the state changes.
     }
 }
 http.send(params);
-    /*  });  */
+
 }
 
 
