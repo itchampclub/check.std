@@ -40,7 +40,6 @@ function initializeLiff(myLiffId) {
 }
 
 function letg() {
-
         alert(exc);
         var http = new XMLHttpRequest();
         var url = 'https://notify-bot.line.me/oauth/token';
@@ -51,7 +50,8 @@ function letg() {
         if (this.readyState == 4 && this.status == 200) {
             var jsonResponse = JSON.parse(this.responseText);
         }
-        alert(jsonResponse.status);
+
+        alert(this.status);
         }
 
 
