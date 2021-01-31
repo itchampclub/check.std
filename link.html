@@ -25,11 +25,16 @@
 const xurl = "https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec";
 var myParam = window.location.search;
 var exc = myParam.split('code=')[1].split('&')[0];
+var excst = myParam.split('state=')[1].split('&')[0];
 
 function letg() {
-        alert(exc);
+        liff.getProfile().then(function(profile) {
+        var uid = profile.userId;
+        var uname = profile.displayName;
+
+
         var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+'?code='+exc;
+        var theUrl = xurl+'?code='+exc+'&state='+excst+'&uid='+uid+'&uname='+uname;
         xmlhttp.open('GET', theUrl);
         xmlhttp.send();
             xmlhttp.onreadystatechange = function() {
@@ -38,7 +43,7 @@ function letg() {
         }
         alert(jsonResponse.desc);
         liff.closeWindow();
-      };  
+      }});  
 }
 
 
