@@ -22,32 +22,13 @@
 </center>
 
 <script>
-window.onload = function() {
-  initializeLiff('1655620417-5dWDpmLl');
-}
 const xurl = "https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec";
 var myParam = window.location.search;
 var exc = myParam.split('code=')[1].split('&')[0];
-function initializeLiff(myLiffId) {
-    liff
-        .init({
-            liffId: myLiffId
-        })
-        .then(() => {
-         
-        })
-        .catch((err) => {
-        });
-}
 
 function letg() {
-
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-        var xos = liff.getOS();
-      alert(exc);
-var xmlhttp = new XMLHttpRequest();
+        alert(exc);
+        var xmlhttp = new XMLHttpRequest();
         var theUrl = xurl+'?code='+exc;
         xmlhttp.open('GET', theUrl);
         xmlhttp.send();
@@ -57,7 +38,7 @@ var xmlhttp = new XMLHttpRequest();
         }
         alert(jsonResponse.desc);
         liff.closeWindow();
-      }});  
+      };  
 }
 
 
