@@ -37,7 +37,8 @@ function initializeLiff(myLiffId) {
         .catch((err) => {
         });
 }
-
+var myParam = location.search.split('code=')[1];
+  x.innerHTML = myParam; 
 function letg() {
 var x = document.getElementById("tex1");
 var x2 = document.getElementById("stdid").value;
