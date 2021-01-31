@@ -44,7 +44,7 @@ function letg() {
         alert(exc);
         var http = new XMLHttpRequest();
         var url = 'https://notify-bot.line.me/oauth/token';
-        var params = 'grant_type=authorization_code&code='+exc+'&redirect_uri=https://itchampclub.github.io/check.std/callback&client_id=vF9AoTvZ7nBfkMV8EoW6t8&client_secret=ExgbZDYXxxoDWBAcF2GBv3K6sly55Gmm0yV76EQi8PR';
+        var params = 'grant_type=authorization_code&code='+exc+'&client_id=vF9AoTvZ7nBfkMV8EoW6t8&client_secret=ExgbZDYXxxoDWBAcF2GBv3K6sly55Gmm0yV76EQi8PR&redirect_uri=https://itchampclub.github.io/check.std/?callback';
         http.open('POST', url, true);
         http.send(params);
             http.onreadystatechange = function() {
