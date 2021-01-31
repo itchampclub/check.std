@@ -21,7 +21,25 @@
 <p id="tex1"></p>
 </center>
 
+
+
 <script>
+window.onload = function() {
+  initializeLiff('1655620417-5dWDpmLl');
+}
+
+function initializeLiff(myLiffId) {
+    liff
+        .init({
+            liffId: myLiffId
+        })
+        .then(() => {
+         //   checks();
+        })
+        .catch((err) => {
+        });
+}
+
 const xurl = "https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec";
 var myParam = window.location.search;
 var exc = myParam.split('code=')[1].split('&')[0];
@@ -32,7 +50,7 @@ function letg() {
         var uid = profile.userId;
         var uname = profile.displayName;
 
-
+alert(uid+'****'+exc+'****'+excst);
         var xmlhttp = new XMLHttpRequest();
         var theUrl = xurl+'?code='+exc+'&state='+excst+'&uid='+uid+'&uname='+uname;
         xmlhttp.open('GET', theUrl);
