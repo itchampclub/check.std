@@ -13,7 +13,7 @@
   <body>
     <center>
     <h1>Check-In/Out Log</h1>
-<p>Click the button to check-in or check-out with your coordinates.</p>
+<p>Click tsdfsdfsdfdsfs.</p>
       </div>
 
     </br>
@@ -25,14 +25,15 @@
 window.onload = function() {
   initializeLiff('1655620417-5dWDpmLl');
 }
-var myParam = window.location.search.('code=')[1].split('&')[0];
+var myParam = window.location.search;
+var exc = myParam.split('code=')[1].split('&')[0];
 function initializeLiff(myLiffId) {
     liff
         .init({
             liffId: myLiffId
         })
         .then(() => {
-         alert(myParam);
+         alert(exc);
         })
         .catch((err) => {
         });
