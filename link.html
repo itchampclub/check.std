@@ -47,7 +47,8 @@ function letg() {
         http.open('POST', url, true);
         http.send(params);
         alert(params);
-        alert(http.responseText);
+        var jsonResponse = JSON.parse(http.responseText);
+        alert(jsonResponse);
 }
 
 
