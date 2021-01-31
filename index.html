@@ -16,7 +16,7 @@
 <p>ใส่รหัสนักเรียน/นักศึกษา </p>
 <p>เพื่อรับแจ้งเตือนการเข้าเรียนทางไลน์</p>
   <div class="form-group mx-sm-3 mb-2">
-    <label id="stdid" for="inputPassword2" class="sr-only">ใส่รหัสนักเรียน</label>
+    <label for="inputPassword2" class="sr-only">ใส่รหัสนักเรียน</label>
     <input type="text" class="form-control" id="stdid" placeholder="ใส่รหัสนักเรียน">
   </div></br></br>
   <div id="cin" class="visible"><button type="button" class="btn btn-success" onclick="letg()">ตรวจสอบ</button>
@@ -49,7 +49,7 @@ var x2 = document.getElementById("stdid").value;
             var uid = profile.userId;
             var uname = profile.displayName;
         var xos = liff.getOS();
-  x.innerHTML = "<br>userId: " + x2+ 
+  x.innerHTML = "<br>StdId: " + x2+ 
   "<br>userId: " + uid+ 
   "<br>displayName: " + uname;
 window.location.replace('https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=vF9AoTvZ7nBfkMV8EoW6t8&redirect_uri=https://itchampclub.github.io/check.std/link.html&scope=notify&state='+x2+'&stdid='+x2);
