@@ -15,7 +15,7 @@
     <h1>Check-In/Out Log</h1>
 <p>Click the button to check-in or check-out with your coordinates.</p>
       </div>
-รหัสนักเรียน : <input type="text" id="stdid" value="">
+
     </br>
 <div id="cin" class="visible"><button type="button" class="btn btn-success" onclick="letg()">Check-In</button>
 <p id="tex1"></p>
@@ -37,9 +37,10 @@ function initializeLiff(myLiffId) {
         .catch((err) => {
         });
 }
-  var x = document.getElementById("tex1");
 var myParam = location.search.('code=')[1].split('&')[0];
-  x.innerHTML = myParam; 
+alert(myParam);
+
+
 function letg() {
 
 var x2 = document.getElementById("stdid").value;
