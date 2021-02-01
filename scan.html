@@ -121,9 +121,22 @@
                 beepsound.muted = true;
             };  
             // ให้เริ่มเล่นวิดีโอก่อนล็กน้อย เพื่อล้างค่ารูป qrcod ล่าสุด เป็นการใช้รูปจากกล้องแทน
+            //post data
+            const xurl = "https://script.google.com/macros/s/AKfycbzqOuwbqy_pAyrXJy0RZ5gJ6Agfs23ZutdlScOpt0STJTScXt8z3fze/exec";
+            var stdcode = code.data;
+            var xmlhttp = new XMLHttpRequest();
+            var theUrl = xurl+'?stdcode='+stdcode;
+            xmlhttp.open('GET', theUrl);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var jsonResponse = JSON.parse(this.responseText);
+            }
+            alert(jsonResponse.desc);
+            liff.closeWindow();
             setTimeout(function(){
                 video.play();
-            },4500);
+            },7000);
             // ให้รอ 5 วินาทีสำหรับการ สแกนในครั้งจ่อไป
              waiting = setTimeout(function(){
                 TLR,TRR,BRL,BLL = null;
