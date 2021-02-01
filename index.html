@@ -41,13 +41,12 @@ function initializeLiff(myLiffId) {
         .catch((err) => {
         });
 }
-function scqr() {
-liff.scanCode().then(result => {
+ function scanCode() {
+      liff.scanCode().then(result => {
         const stringifiedResult = JSON.stringify(result);
-        obj = JSON.parse(stringifiedResult);
-  alert(obj.value);
-  });
-}  
+        alert(stringifiedResult);
+      });
+    }
 function letg() {
 var x = document.getElementById("tex1");
 var x2 = document.getElementById("stdid").value;
