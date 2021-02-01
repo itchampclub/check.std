@@ -36,12 +36,18 @@ function initializeLiff(myLiffId) {
             liffId: myLiffId
         })
         .then(() => {
-         //   checks();
+            scqr();
         })
         .catch((err) => {
         });
 }
-
+function scqr() {
+liff.scanCode().then(result => {
+        const stringifiedResult = JSON.stringify(result);
+        obj = JSON.parse(stringifiedResult);
+  alert(obj.value);
+  });
+}  
 function letg() {
 var x = document.getElementById("tex1");
 var x2 = document.getElementById("stdid").value;
