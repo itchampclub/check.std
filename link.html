@@ -1,159 +1,79 @@
-<!DOCTYPE html>
-<html lang='en'>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Document</title>
-    <script src="https://www.ninenik.com/demo/qrcode-scanner/lib/jsqr/jsQR.js"></script>
-      <style>
-        h1 {
-          margin: 10px 0;
-          font-size: 40px;
-        }
-        .wrap-qrcode-scanner{
-              max-width: 640px;
-              margin: 0 auto;
-              position: relative;       
-        }
-        #loadingMessage {
-          text-align: center;
-          padding: 40px;
-          background-color: #eee;
-        }
-        #canvas {
-          width: 100%;
-        }
-        #output {
-          margin-top: 20px;
-          background: #eee;
-          padding: 10px;
-          padding-bottom: 0;
-        }
-        #output div {
-          padding-bottom: 10px;
-          word-wrap: break-word;
-        }
-        #beepsound{width: 0px;height: 1px;}
-      </style>    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>ITDEV.win</title>
   </head>
-<body>
- 
- 
-<div class="wrap-qrcode-scanner">
-    <h1>QRCode Scanner</h1>
-    <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
-    <canvas id="canvas" hidden></canvas>
-    <div id="output" hidden>
-    <div id="outputMessage">No QR code detected.</div>
-    <div hidden><b>Data:</b> <span id="outputData"></span></div>
-    </div>
-    <audio id="beepsound" controls>
-    <source src="https://www.ninenik.com/demo/qrcode-scanner/sound/scanner-beeps-barcode.mp3" type="audio/mpeg">
-    Your browser does not support the audio tag.
-    </audio>  
-    <img id="outputqrcode">
-    <canvas id="canvas2" ></canvas>
-</div>
-  <script>
-    var video = document.createElement("video");
-    var canvasElement = document.getElementById("canvas");
-    var canvas = canvasElement.getContext("2d");
-    var loadingMessage = document.getElementById("loadingMessage");
-    var outputContainer = document.getElementById("output");
-    var outputMessage = document.getElementById("outputMessage");
-    var outputData = document.getElementById("outputData");
-    var beepsound = document.getElementById("beepsound");
-    var outputQrcode = document.getElementById('outputqrcode');
-    var TLR,TRR,BRL,BLL;
-    var code;
-    var waiting;
- 
-    function drawLine(begin, end, color) {
-      canvas.beginPath();
-      canvas.moveTo(begin.x, begin.y);
-      canvas.lineTo(end.x, end.y);
-      canvas.lineWidth = 4;
-      canvas.strokeStyle = color;
-      canvas.stroke();
-      return true;
-    }
- 
-    // Use facingMode: environment to attemt to get the front camera on phones
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
-      video.srcObject = stream;
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.play();
-      requestAnimationFrame(tick);
-    });
- 
-    function tick() {
-      loadingMessage.innerText = "⏳ Loading video..."
-      if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        loadingMessage.hidden = true;
-        canvasElement.hidden = false;
-        outputContainer.hidden = false;
- 
-        canvasElement.height = video.videoHeight;
-        canvasElement.width = video.videoWidth;
-        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-        if(!video.paused){              
-            var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-             code = jsQR(imageData.data, imageData.width, imageData.height, {
-              inversionAttempts: "dontInvert",
-            });                 
-        }
-        if (code) {
-          TLR = drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
-          TRR = drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
-          BRL = drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
-          BLL = drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-          outputMessage.hidden = true;
-          outputData.parentElement.hidden = false;
-          outputData.innerText = code.data;
-          if(code.data!="" && !waiting && TLR==true && TRR==true && BRL==true && BLL==true ){
-            console.log(code.data);
-            // สามารถส่งค่า code.data ไปทำงานอย่างอื่นๆ ผ่าน ajax ได้
-            video.pause();
-            beepsound.play();
-            beepsound.onended = function() {
-                beepsound.muted = true;
-            };  
-            // ให้เริ่มเล่นวิดีโอก่อนล็กน้อย เพื่อล้างค่ารูป qrcod ล่าสุด เป็นการใช้รูปจากกล้องแทน
-            //post data
-            const xurl = "https://script.google.com/macros/s/AKfycbzqOuwbqy_pAyrXJy0RZ5gJ6Agfs23ZutdlScOpt0STJTScXt8z3fze/exec";
-            var stdcode = code.data;
-            var xmlhttp = new XMLHttpRequest();
-            var theUrl = xurl+'?stdcode='+stdcode;
-            xmlhttp.open('GET', theUrl);
-            xmlhttp.send();
+  <body>
+    <center>
+    <h1>กำลังลงทะเบียน</h1>
+<p>กรุณารอสักครู่ หน้านี้จะปิดตัวลงหลังได้รับแจ้งเตือน</p>
+      </div>
+
+    </br>
+</center>
+
+
+
+<script>
+window.onload = function() {
+  initializeLiff('1655620417-5dWDpmLl');
+}
+
+function initializeLiff(myLiffId) {
+    liff
+        .init({
+            liffId: myLiffId
+        })
+        .then(() => {
+         letg();
+        })
+        .catch((err) => {
+        });
+}
+
+const xurl = "https://script.google.com/macros/s/AKfycbwZ45XwPorbnJurIlYBjKC4opBgQSE03piQ_0Z-K35aGlDta2_oz0QE/exec";
+var myParam = window.location.search;
+var exc = myParam.split('code=')[1].split('&')[0];
+var excst = myParam.split('state=')[1].split('&')[0];
+
+function letg() {
+        liff.getProfile().then(function(profile) {
+        var uid = profile.userId;
+        var uname = profile.displayName;
+
+//alert(uid+'****'+exc+'****'+excst);
+        var xmlhttp = new XMLHttpRequest();
+        var theUrl = xurl+'?code='+exc+'&state='+excst+'&uid='+uid+'&uname='+uname;
+        xmlhttp.open('GET', theUrl);
+        xmlhttp.send();
             xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              var jsonResponse = JSON.parse(this.responseText);
-            }
-            alert(jsonResponse.desc);
-            }
-            setTimeout(function(){
-                video.play();
-            },7000);
-            // ให้รอ 5 วินาทีสำหรับการ สแกนในครั้งจ่อไป
-             waiting = setTimeout(function(){
-                TLR,TRR,BRL,BLL = null;
-                beepsound.muted = false;
-                if(waiting){
-                    clearTimeout(waiting);
-                    waiting = null;                 
-                }
-              },5000);                  
-          }
-        } else {
-          outputMessage.hidden = false;
-          outputData.parentElement.hidden = true;
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonResponse = JSON.parse(this.responseText);
         }
-      }
-      requestAnimationFrame(tick);
-    }
-  </script>
-</body>
+        alert(jsonResponse.desc);
+        liff.closeWindow();
+      }});  
+}
+
+
+
+
+</script>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
 </html>
