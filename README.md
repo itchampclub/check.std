@@ -1,6 +1,7 @@
 # check.std
 Line Notify Service with Google apps script.
 Ref link.
+### [Video](https://drive.google.com/drive/folders/1lSkyPOz-V0RCsJCmSzElzR9AFUMZhoRV?usp=sharing)
 ## (https://www.the-qrcode-generator.com/)
 ## (https://notify-bot.line.me/my/services/)
 ## (https://developers.line.biz/console/)
